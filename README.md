@@ -1,6 +1,6 @@
 ![](https://storageapi.fleek.co/fleek-team-bucket/logos/capp.png)
 
-# CAP - Certified Asset Provenance (Motoko Library)
+# The CAP (Certified Asset Provenance) Motoko Library
 
 Transaction history & asset provenance for NFT’s & Tokens on the Internet Computer
 
