@@ -21,6 +21,8 @@ You're required to have [Vessel Motoko package manager](https://github.com/dfini
 
 Here's a quick breakdown, but use the original documentation for latest details:
 
+- You understand the basics of `dfx cli`, otherwise take the time to learn [dfx getting started](https://smartcontracts.org/docs/quickstart/local-quickstart.html)
+
 - Download a copy of the [Vessel binary](https://github.com/dfinity/vessel/releases) from the [release page](https://github.com/dfinity/vessel/releases) or build one yourself
 
 - Add the [Vessel binary](https://github.com/dfinity/vessel/releases) location to your [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) (e.g. for macOS one of the quickest ways to achieve this would be to symlink the binary in the /usr/local/bin directory which is included in [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) by default)
