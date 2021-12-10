@@ -15,6 +15,7 @@ Transaction history & asset provenance for NFT’s & Tokens on the Internet Comp
   - [Root](docs/Root.md)
   - [Router](docs/Router.md)
   - [Types](docs/Types.md)
+- [Release](#release)
 - [Links](#links)
 
 ## 👋 Getting started
@@ -70,6 +71,22 @@ let
       }] : List Package
 
 in  upstream # additions
+```
+
+## 🚀 Release
+
+**TLDR; Common tag release process, which should be automated shortly by a semanatic release process in the CI**
+
+Create a new tag for the branch commit, you'd like to tag (e.g. for v1.0.0):
+
+```sh
+git tag v1.0.0
+```
+
+Complete by pushing the tags to remote:
+
+```sh
+git push origin --tags
 ```
 
 ## 🔗 Links
