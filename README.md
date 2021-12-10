@@ -47,10 +47,14 @@ Here's a quick breakdown, but use the original documentation for latest details:
   ...
   ```
 
-- From then on, you can simply run the [dfx build command](https://smartcontracts.org/docs/developers-guide/cli-reference/dfx-build.html)
+- From then on, you can simply run the [dfx build command](https://smartcontracts.org/docs/developers-guide/cli-reference/dfx-build.html) or [dfx deploy](https://smartcontracts.org/docs/developers-guide/cli-reference/dfx-deploy.html)
 
   ```sh
   dfx build
+  ```
+  
+  ```sh
+  dfx deploy <canister>
   ```
 
 ## 🤖 Add the library to a project
