@@ -11,10 +11,6 @@ Transaction history & asset provenance for NFT’s & Tokens on the Internet Comp
 - [Getting Started](#getting-started)
 - [Add the library to a project](#add-the-library-to-a-project)
 - [Cap Motoko library specs](#cap-motoko-library-specs)
-  - [Cap](docs/Cap.md)
-  - [Root](docs/Root.md)
-  - [Router](docs/Router.md)
-  - [Types](docs/Types.md)
 - [Release](#release)
 - [Contribution guideline](#contribution-guideline)
 - [Links](#links)
@@ -75,6 +71,31 @@ let
       }] : List Package
 
 in  upstream # additions
+```
+
+## Cap Motoko library specs
+
+The specifications documents should be generated dynamically to be inline with the source-code. You'll have to clone the repository for [Cap Motoko library](https://github.com/Psychedelic/cap-motoko-library), and execute the doc generator:
+
+```sh
+make docs
+```
+
+Once completed, a directory `/docs` will be available providing the `html` files you can open on your browser (e.g. the `/docs/index.html`):
+
+```sh
+docs
+├── Cap.html
+├── Cap.md
+├── IC.html
+├── Root.html
+├── Root.md
+├── Router.html
+├── Router.md
+├── Types.html
+├── Types.md
+├── index.html
+└── styles.css
 ```
 
 ## 🚀 Release
