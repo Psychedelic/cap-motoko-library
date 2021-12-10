@@ -15,6 +15,11 @@ Transaction history & asset provenance for NFT’s & Tokens on the Internet Comp
 - [Contribution guideline](#contribution-guideline)
 - [Links](#links)
 
+## 🧐 Requirements
+
+  - [DFX cli](https://smartcontracts.org/docs/quickstart/local-quickstart.html)
+  - [Vessel Motoko package manager](https://github.com/dfinity/vessel) 
+
 ## 👋 Getting started
 
 You're required to have [Vessel Motoko package manager](https://github.com/dfinity/vessel) binary installed and configured in your operating system.
