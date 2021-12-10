@@ -73,6 +73,70 @@ let
 in  upstream # additions
 ```
 
+We've assumed that you have followed `Vessel` initialisation e.g. the init and the `dfx.json`. 
+
+Here's a breakdown of a project initialised by the [dfx cli](https://smartcontracts.org/docs/developers-guide/cli-reference.html):
+
+1) Create a new Motoko project called `cap-motoko-example` (it's a random name that we selected for our example, you can name it whatever you want)
+
+  ```sh
+  dfx new cap-motoko-example
+  ```
+
+2) Initialise Vessel
+
+  ```sh
+  vessel init
+  ```
+
+3) Add the Cap Motoko library to `package-set.dhall`, as described in [Add the library to a project](#add-the-library-to-a-project)
+
+4) Edit `dfx.json` and set `vessel sources` in the `defaults > build > packtool`
+
+  ```sh
+  {
+    "canisters": {
+      "cap-motoko-example": {
+        "main": "src/cap-motoko-example/main.mo",
+        "type": "motoko"
+      },
+      "cap-motoko-example_assets": {
+        "dependencies": [
+          "cap-motoko-example"
+        ],
+        "frontend": {
+          "entrypoint": "src/cap-motoko-example_assets/src/index.html"
+        },
+        "source": [
+          "src/cap-motoko-example_assets/assets",
+          "dist/cap-motoko-example_assets/"
+        ],
+        "type": "assets"
+      }
+    },
+    "defaults": {
+      "build": {
+        "args": "",
+        "packtool": "vessel sources"
+      }
+    },
+    "dfx": "0.8.1",
+    "networks": {
+      "local": {
+        "bind": "127.0.0.1:8000",
+        "type": "ephemeral"
+      }
+    },
+    "version": 1
+  }
+  ```
+
+5) From this point on, vessel will include the required packages for you
+
+ ```sh
+  dfx build
+  ```
+
 ## Cap Motoko library specs
 
 The specifications documents should be generated dynamically to be inline with the source-code. You'll have to clone the repository for [Cap Motoko library](https://github.com/Psychedelic/cap-motoko-library), and execute the doc generator:
