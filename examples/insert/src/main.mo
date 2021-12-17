@@ -23,8 +23,9 @@ actor {
     let creation_cycles : Nat = 100000000000;
 
     public func init() : async () {
-        // As a demo, the parameters are hard-typed
+        // As a demo, the parameters are hard-typed here
         // but could be declared in the function signature
+        // and pass when executing the request
         let handshake = await cap.awaitForHandshake(
           local_replica_router_id,
           token_contract_id,
