@@ -64,7 +64,7 @@ module {
             #ok(insert_response)
         };
 
-        public func handshake(router_id : Text, token_contract_id : Text): async () {
+        public func handshake(router_id : Text, token_contract_id : Text, creation_cycles: Nat): async () {
             let router: Router.Self = actor(router_id);
 
             let result = await router.get_token_contract_root_bucket({
