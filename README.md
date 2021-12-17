@@ -12,6 +12,7 @@ Transaction history & asset provenance for NFT’s & Tokens on the Internet Comp
 - [Add the library to a project](#add-the-library-to-a-project)
 - [Cap Motoko library specs](#cap-motoko-library-specs)
 - [Release](#release)
+- [Examples](/examples)
 - [Contribution guideline](#contribution-guideline)
 - [Links](#links)
 
