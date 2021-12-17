@@ -7,13 +7,32 @@ actor {
     type Event = Root.Event;
     type IndefiniteEvent = Root.IndefiniteEvent;
 
-    // Required by the constructor related handshake
-    let canister_id : Principal = Principal.fromText("ai7t5-aibaq-aaaaa-aaaaa-c");
-    let creation_cycles : Nat = 15000000000;
+    let local_replica_router_id = "rrkah-fqaaa-aaaaa-aaaaq-cai";
+    let cap_service_router : Principal = Principal.fromText(local_replica_router_id);
 
-    let cap = CapMotokoLibrary.Cap(canister_id, creation_cycles);
+    // If the local replica router is not set
+    // then the mainnet id is used "lj532-6iaaa-aaaah-qcc7a-cai" 
+    let cap = CapMotokoLibrary.Cap(cap_service_router);
 
-    public shared (msg) func start() : async Result.Result<Nat64, ()> {
+    // Your application canister token contract id
+    let token_contract_id = "rkp4c-7iaaa-aaaaa-aaaca-cai";
+
+    // The number of cycles to use when initialising
+    // the handshake process which creates a new canister
+    // and install the bucket code into cap service
+    let creation_cycles : Nat = 100000000000;
+
+    public func init() : async () {
+        // As a demo, the parameters are hard-typed
+        // but could be declared in the function signature
+        let handshake = await cap.awaitForHandshake(
+          local_replica_router_id,
+          token_contract_id,
+          creation_cycles
+        );
+    };
+
+    public shared (msg) func insert() : async Result.Result<Nat64, Types.InsertTransactionError> {
         let event : IndefiniteEvent = {
             operation = "transfer";
             details = [("key", #Text "value")];

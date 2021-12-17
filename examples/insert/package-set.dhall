@@ -6,7 +6,7 @@ let
   additions =
       [{ name = "cap-motoko-library"
       , repo = "https://github.com/Psychedelic/cap-motoko-library"
-      , version = "7ac042d"
+      , version = "693b874"
       , dependencies = [] : List Text
       }] : List Package
 
