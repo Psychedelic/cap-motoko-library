@@ -24,6 +24,8 @@ dfx deploy cap-motoko-example
 
 Make sure you execute the command in the correct directory, where a `dfx.json` exists describing the canister `cap-motoko-example`, otherwise it'll fail.
 
+💡 When deploying, the `cap-motoko-example` is pulling a particular version of the [Cap Motoko Library](https://github.com/Psychedelic/cap-motoko-library) via the [Vessel Package Manager](https://github.com/dfinity/vessel/releases) which is described in the main README of the [Cap Motoko Library](https://github.com/Psychedelic/cap-motoko-library) repository. For example, you'll find the field `version` in the additions setup in the `package-set.dhall`, you can have another tag or a commit hash.
+
 We'll use `<Application Token Contract ID>` to keep it easy to follow!
 
 Here's an example of how the output should look like:
