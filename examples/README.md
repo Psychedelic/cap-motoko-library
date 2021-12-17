@@ -1,4 +1,4 @@
-# Cap Motoko Library examples
+# 🦖 Cap Motoko Library examples
 
 The examples serve to provide information on how to use the Motoko Library, mainly in your local replica environment. Use the documentation here to understand how to run the separate services which are required in your local development environment.
 
