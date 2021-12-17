@@ -20,7 +20,7 @@ let router_mainnet_id = "lj532-6iaaa-aaaah-qcc7a-cai";
 
 module {
     public class Cap(override_mainnet_router_id: ?Text) {
-        let router_id = Option.get(override_mainnet_router_id, router_mainnet_id);
+        let router_id = Option.get(override_mainnet_router_id, Router.mainnet_id);
         
         var rootBucket: ?Text = null;
         let ic: IC.ICActor = actor("aaaaa-aa");
@@ -70,7 +70,7 @@ module {
 
             let result = await router.get_token_contract_root_bucket({
                 witness=false;
-                canister=canister_id;
+                canister=Principal.fromText(router_id);
             });
 
             switch(result.canister) {

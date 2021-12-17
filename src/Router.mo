@@ -29,5 +29,7 @@ module {
     insert_new_users : shared (Principal, [Principal]) -> async ();
     install_bucket_code : shared Principal -> async ();
     trigger_upgrade : shared () -> async ();
-  }
+  };
+
+  public let mainnet_id = "lj532-6iaaa-aaaah-qcc7a-cai";
 }
