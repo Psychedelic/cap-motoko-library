@@ -16,8 +16,6 @@ import Router "Router";
 import IC "IC";
 import Option "mo:base/Option";
 
-let router_mainnet_id = "lj532-6iaaa-aaaah-qcc7a-cai";
-
 module {
     public class Cap(override_mainnet_router_id: ?Text) {
         let router_id = Option.get(override_mainnet_router_id, Router.mainnet_id);
