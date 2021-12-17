@@ -19,8 +19,8 @@ import Option "mo:base/Option";
 let router_mainnet_id = "lj532-6iaaa-aaaah-qcc7a-cai";
 
 module {
-    public class Cap(router_id: ?Text) {
-        let router_id = Option.get(router_id, router_mainnet_id);
+    public class Cap(override_mainnet_router_id: ?Text) {
+        let router_id = Option.get(override_mainnet_router_id, router_mainnet_id);
         
         var rootBucket: ?Text = null;
         let ic: IC.ICActor = actor("aaaaa-aa");
