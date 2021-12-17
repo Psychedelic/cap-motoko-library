@@ -91,4 +91,4 @@ Here's how it looks:
 
 The `(variant { 24_860 = 0 : nat64 })` is the returned value as we can verify by looking at the [Candid](https://github.com/Psychedelic/cap/blob/main/candid/root.did#L57) for Cap Root.
 
-That's it! You now know how to use the Cap Motoko Library in your local replica and the same knowledge can be used to deploy to mainnet!
+👋 That's it! You can now use the Cap Motoko Library in your local replica and the same knowledge can be applied to deploy to the mainnet!
