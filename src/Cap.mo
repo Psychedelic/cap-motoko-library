@@ -15,16 +15,16 @@ import Types "Types";
 import Router "Router";
 import IC "IC";
 
-module {
-    public class Cap(canister_id: Principal, creation_cycles: Nat) {
-        let router_id = "lj532-6iaaa-aaaah-qcc7a-cai";
+let router_mainnet_id = "lj532-6iaaa-aaaah-qcc7a-cai";
 
+module {
+    public class Cap(router_id: ?Text) {
+        let router_id = Option.get(router_id, router_mainnet_id);
+        
         var rootBucket: ?Text = null;
         let ic: IC.ICActor = actor("aaaaa-aa");
 
         public func getTransaction(id: Nat64) : async Result.Result<Root.Event, Types.GetTransactionError> {
-            await awaitForHandshake();
-
             let root = switch(rootBucket) {
                 case(?r) { r };
                 case(_) { "" }; // unreachable
@@ -51,8 +51,6 @@ module {
         };
 
         public func insert(event: Root.IndefiniteEvent) : async Result.Result<Nat64, Types.InsertTransactionError> {
-            await awaitForHandshake();
-
             let root = switch(rootBucket) {
                 case(?r) { r };
                 case(_) { "" }; // unreachable
@@ -61,12 +59,12 @@ module {
 
             let insert_response = await rb.insert(event);
 
+            // TODO: throw on error
+
             #ok(insert_response)
         };
 
-
-        /// Returns the principal of the root canister
-        public func performHandshake(): async () {
+        public func handshake(router_id : Text, token_contract_id : Text): async () {
             let router: Router.Self = actor(router_id);
 
             let result = await router.get_token_contract_root_bucket({
@@ -85,21 +83,35 @@ module {
 
                     // Add cycles and perform the create call
                     Cycles.add(creation_cycles);
+
                     let create_response = await ic.create_canister(?settings);
 
                     // Install the cap code
                     let canister = create_response.canister_id;
-                    let router = (actor (router_id) : Router.Self);
+
+                    // Extendc controllers by including the token contract id
+                    // as otherwise, the Cap Service install_bucket_code
+                    // fails because it lacks the token contract id as controller
+                    await ic.update_settings({
+                        canister_id = canister;
+                        settings = {
+                            controllers = ?[Principal.fromText(router_id), Principal.fromText(token_contract_id)];
+                            compute_allocation = null;
+                            memory_allocation = null;
+                            freezing_threshold = null;
+                        };
+                    });
+
                     await router.install_bucket_code(canister);
 
+                    // Find root by the token contract id
                     let result = await router.get_token_contract_root_bucket({
                         witness=false;
-                        canister=canister_id;
+                        canister=Principal.fromText(token_contract_id);
                     });
 
                     switch(result.canister) {
                         case(null) {
-                            // Debug.trap("Error while creating root bucket");
                             assert(false);
                         };
                         case(?canister) {
@@ -112,13 +124,5 @@ module {
                 };
             };
         };
-
-        public func awaitForHandshake(): async () {
-            if(rootBucket == null) {
-                await performHandshake()
-            } else {
-                return;
-            }
-        }
     };
 }
