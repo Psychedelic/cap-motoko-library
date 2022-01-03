@@ -1,6 +1,8 @@
 # 🦖 Cap Motoko Library examples
 
-The examples serve to provide information on how to use the Motoko Library, mainly in your local replica environment. Use the documentation here to understand how to run the separate services which are required in your local development environment.
+The examples serve to provide information on how to use the Motoko Library, mainly in your local replica environment.
+
+Use the documentation here to understand how to run the separate services which are required in your local development environment.
 
 # 🤔 How to run the examples?
 
@@ -46,12 +48,14 @@ let local_replica_router_id = "<Router ID>";
 
 ...
 
-let token_contract_id = "rdmx6-jaaaa-aaaaa-aaadq-cai";
+let token_contract_id = "<Application Token Contract ID>";
 ```
 
-Of course, do NOT include the angle brackets and notice that the `...` is just to say that there are other lines of code inbetween, so feel free to ignore!
+💡 Of course, do NOT include the angle brackets and notice that the `...` is just to say that there are other lines of code inbetween, so feel free to ignore!
 
-Now, we need to push our example source code to Cap! For that we have a `handshake` process that does it for us: creates a new canister, updates the controllers, etc.
+Now, we need to push our example source code to Cap! For that we have a `handshake` process that does it for us:
+- creates a new canister
+- updates the controllers
 
 For our example, we're going to use the [DFX CLI]() to call a method in our example application actor, called `init`
 
@@ -59,17 +63,15 @@ For our example, we're going to use the [DFX CLI]() to call a method in our exam
 dfx canister call <Application Token Contract ID> init "()"
 ```
 
-It should take a bit, and once completed you'll find it similar to:
+It should take a bit, and once completed you'll find the output it similar to:
 
 ```sh
-❯ dfx canister call <Application Token Contract ID> init "()"
-
 ()
 ```
 
 Where `()` is the returned value, if we did NOT get any errors during the process handling!
 
-From then on we can simple use the remaining methods available, such as `insert`, this means that we do the initialisation only once and not everytime we need to make a Cap call. Of course everything else related to Canister management in the IC applies!
+From then on we can simple use the remaining methods available, such as `insert`, this means that we do the initialisation only once and not everytime we need to make a Cap call.
 
 To complete, we execute the `insert` to push some data to our Root bucket for our `<Application Token Contract ID>` example app.
 
@@ -80,11 +82,9 @@ dfx canister call <Application Token Contract ID> insert "()"
 Here's how it looks:
 
 ```sh
-❯ dfx canister call <Application Token Contract ID> insert "()"
-
-(variant { 24_860 = 0 : nat64 })
+(variant { ok = 0 : nat64 })
 ```
 
-The `(variant { 24_860 = 0 : nat64 })` is the returned value as we can verify by looking at the [Candid](https://github.com/Psychedelic/cap/blob/main/candid/root.did#L57) for Cap Root.
+The `(variant { ok = 0 : nat64 })` is a wrapped response of the expected returned value as we can verify by looking at the [Candid](https://github.com/Psychedelic/cap/blob/main/candid/root.did#L57) for Cap Root. It's wrapped by our example `insert` method.
 
 👋 That's it! You can now use the Cap Motoko Library in your local replica and the same knowledge can be applied to deploy to the mainnet!
