@@ -53,6 +53,8 @@ let token_contract_id = "<Application Token Contract ID>";
 
 💡 Of course, do NOT include the angle brackets and notice that the `...` is just to say that there are other lines of code inbetween, so feel free to ignore!
 
+💡 We also run into the chicken or the egg causality dilemma here, to find the `<Application Token Contract ID>` we need to deploy at least once and deploy it again once we found and updated the token_contract_id `<Application Token Contract ID>`.
+
 Now, we need to push our example source code to Cap! For that we have a `handshake` process that does it for us:
 - creates a new canister
 - updates the controllers

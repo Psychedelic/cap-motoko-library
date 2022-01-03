@@ -26,7 +26,7 @@ actor {
     // e.g. execute the command dfx canister id cap-motoko-example
     // in the cap-motoko-library/examples directory
     // after you have deployed the cap-motoko-example
-    let token_contract_id = "rdmx6-jaaaa-aaaaa-aaadq-cai";
+    let token_contract_id = "qoctq-giaaa-aaaaa-aaaea-cai";
 
     // The number of cycles to use when initialising
     // the handshake process which creates a new canister
