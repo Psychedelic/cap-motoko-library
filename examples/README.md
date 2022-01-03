@@ -36,8 +36,8 @@ All canisters have already been created.
 Building canisters...
 Installing canisters...
 Creating UI canister on the local network.
-The UI canister on the "local" network is "<Application Token Contract ID>"
-Installing code for canister cap-motoko-example, with canister_id qsgjb-riaaa-aaaaa-aaaga-cai
+The UI canister on the "local" network is "<xxxxx>"
+Installing code for canister cap-motoko-example, with canister_id "<Application Token Contract ID>"
 Deployed canisters.
 ```
 
@@ -50,7 +50,7 @@ let local_replica_router_id = "<Router ID>";
 
 ...
 
-let token_contract_id = "qsgjb-riaaa-aaaaa-aaaga-cai";
+let token_contract_id = "rdmx6-jaaaa-aaaaa-aaadq-cai";
 ```
 
 Of course, do NOT include the angle brackets and notice that the `...` is just to say that there are other lines of code inbetween, so feel free to ignore!

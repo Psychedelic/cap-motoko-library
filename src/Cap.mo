@@ -4,6 +4,20 @@
 ///
 /// ```motoko
 /// import Cap "mo:cap-motoko-library/Cap";
+///
+/// let cap = CapMotokoLibrary.Cap(?local_replica_router_id);
+/// let token_contract_id = "rdmx6-jaaaa-aaaaa-aaadq-cai";
+///
+/// public func init() : async () {
+///     // As a demo, the parameters are hard-typed here
+///     // but could be declared in the function signature
+///     // and pass when executing the request
+///     let handshake = await cap.handshake(
+///       local_replica_router_id,
+///       token_contract_id,
+///       creation_cycles
+///     );
+/// };
 /// ```
 
 import Result "mo:base/Result";
@@ -92,19 +106,6 @@ module {
 
                     // Install the cap code
                     let canister = create_response.canister_id;
-
-                    // Extendc controllers by including the token contract id
-                    // as otherwise, the Cap Service install_bucket_code
-                    // fails because it lacks the token contract id as controller
-                    // await ic.update_settings({
-                    //     canister_id = canister;
-                    //     settings = {
-                    //         controllers = ?[Principal.fromText(router_id), Principal.fromText(token_contract_id)];
-                    //         compute_allocation = null;
-                    //         memory_allocation = null;
-                    //         freezing_threshold = null;
-                    //     };
-                    // });
 
                     await router.install_bucket_code(canister);
 
