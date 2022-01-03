@@ -10,11 +10,7 @@ If planning to run the examples in your local environment and not the mainnet ne
 
 Alternatively, the Cap Service handling can be borrowed from the [Cap Explorer](https://github.com/Psychedelic/cap-explorer), which is documented and is easy to grasp.
 
-Bear in mind, that there is a requirement in the Cap Service side of things that should be integrated at some point in the future from the time of writing this document; So, either you clone the Cap repo or use the Cap Explorer handling, the Cap repository in your local environment should be checked against a version which includes the required [PR](https://github.com/Psychedelic/cap/pull/19).
-
 Once the `Cap router` is running in your local, copy the Router id; for our reading we'll name it `<Router ID>` to keep it easy to follow!
-
-As noted previously, ensure that you set a commit which includes the [PR](https://github.com/Psychedelic/cap/pull/19) mentioned above, or whichever was decided following up.
 
 When ready, open the directory for one of our examples e.g. the `/cap-motoko-library/examples/insert` and deploy the example to your local replica network, as follows:
 
