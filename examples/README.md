@@ -39,25 +39,17 @@ Installing code for canister cap-motoko-example, with canister_id "<Application 
 Deployed canisters.
 ```
 
-In the output, copy the `<Application Token Contract ID>` because you are going to use it, to tell to our demo application about it!
+In the output, copy the `<Application Token Contract ID>` because you are going to use it to send requests via the DFX CLI!
 
-Open the file  `/cap-motoko-library/examples/insert/src/main.mo` and replace the following variables to the ones that you found in your environment:
+Open the file  `/cap-motoko-library/examples/insert/src/main.mo` and replace the following variable to the one you found in your environment:
 
 ```sh
 let local_replica_router_id = "<Router ID>";
-
-...
-
-let token_contract_id = "<Application Token Contract ID>";
 ```
 
 💡 Of course, do NOT include the angle brackets and notice that the `...` is just to say that there are other lines of code inbetween, so feel free to ignore!
 
-💡 We also run into the chicken or the egg causality dilemma here, to find the `<Application Token Contract ID>` we need to deploy at least once and deploy it again once we found and updated the token_contract_id `<Application Token Contract ID>`.
-
-Now, we need to push our example source code to Cap! For that we have a `handshake` process that does it for us:
-- creates a new canister
-- updates the controllers
+Now, we need to push our example source code to Cap! For that we have a `handshake` process that creates a new Root canister for us, with the right controller.
 
 For our example, we're going to use the [DFX CLI]() to call a method in our example application actor, called `init`
 
