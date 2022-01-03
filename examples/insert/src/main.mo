@@ -15,7 +15,7 @@ actor {
     // the Cap repo is located at https://github.com/Psychedelic/cap
     // see the releases https://github.com/Psychedelic/cap/tags
     // to ensure you get a working version
-    let local_replica_router_id = "rrkah-fqaaa-aaaaa-aaaaq-cai";
+    let local_replica_router_id = "ryjl3-tyaaa-aaaaa-aaaba-cai";
 
     // If the local replica router is not set
     // then the mainnet id is used "lj532-6iaaa-aaaah-qcc7a-cai" 
@@ -26,7 +26,7 @@ actor {
     // e.g. execute the command dfx canister id cap-motoko-example
     // in the cap-motoko-library/examples directory
     // after you have deployed the cap-motoko-example
-    let token_contract_id = "qsgjb-riaaa-aaaaa-aaaga-cai";
+    let token_contract_id = "qoctq-giaaa-aaaaa-aaaea-cai";
 
     // The number of cycles to use when initialising
     // the handshake process which creates a new canister

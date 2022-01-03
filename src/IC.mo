@@ -1,4 +1,7 @@
 module {
+    public type CreateCanisterParams = {
+        settings: ?CanisterSettings;
+    };
     public type CanisterSettings = {
         controllers : ?[Principal];
         compute_allocation : ?Nat;
@@ -36,7 +39,7 @@ module {
         cycles: Nat;
     };
     public type ICActor = actor {
-        create_canister: shared(settings: ?CanisterSettings) -> async CanisterId;
+        create_canister: shared(settings: CreateCanisterParams) -> async CanisterId;
         update_settings: shared(params: UpdateSettingsParams) -> async ();
         install_code: shared(params: InstallCodeParams) -> async ();
         canister_status: query(canister_id: CanisterId) -> async CanisterStatus;

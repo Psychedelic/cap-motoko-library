@@ -15,6 +15,7 @@ import Types "Types";
 import Router "Router";
 import IC "IC";
 import Option "mo:base/Option";
+import Prelude "mo:base/Prelude";
 
 module {
     public class Cap(override_mainnet_router_id: ?Text) {
@@ -26,11 +27,11 @@ module {
         public func getTransaction(id: Nat64) : async Result.Result<Root.Event, Types.GetTransactionError> {
             let root = switch(rootBucket) {
                 case(?r) { r };
-                case(_) { "" }; // unreachable
+                case(_) { Prelude.unreachable() };
             };
             let rb: Root.Self = actor(root);
 
-            let transaction_response = await rb.get_transaction({ id=id; witness=false; }); 
+            let transaction_response = await rb.get_transaction({ id=id; witness=false; });
 
             switch(transaction_response) {
                 case (#Found(event, witness)) {
@@ -52,7 +53,7 @@ module {
         public func insert(event: Root.IndefiniteEvent) : async Result.Result<Nat64, Types.InsertTransactionError> {
             let root = switch(rootBucket) {
                 case(?r) { r };
-                case(_) { "" }; // unreachable
+                case(_) { Prelude.unreachable() };
             };
             let rb: Root.Self = actor(root);
 
@@ -80,10 +81,14 @@ module {
                         freezing_threshold = null;
                     };
 
+                    let params: IC.CreateCanisterParams = {
+                        settings = ?settings
+                    };
+
                     // Add cycles and perform the create call
                     Cycles.add(creation_cycles);
 
-                    let create_response = await ic.create_canister(?settings);
+                    let create_response = await ic.create_canister(params);
 
                     // Install the cap code
                     let canister = create_response.canister_id;
@@ -91,15 +96,15 @@ module {
                     // Extendc controllers by including the token contract id
                     // as otherwise, the Cap Service install_bucket_code
                     // fails because it lacks the token contract id as controller
-                    await ic.update_settings({
-                        canister_id = canister;
-                        settings = {
-                            controllers = ?[Principal.fromText(router_id), Principal.fromText(token_contract_id)];
-                            compute_allocation = null;
-                            memory_allocation = null;
-                            freezing_threshold = null;
-                        };
-                    });
+                    // await ic.update_settings({
+                    //     canister_id = canister;
+                    //     settings = {
+                    //         controllers = ?[Principal.fromText(router_id), Principal.fromText(token_contract_id)];
+                    //         compute_allocation = null;
+                    //         memory_allocation = null;
+                    //         freezing_threshold = null;
+                    //     };
+                    // });
 
                     await router.install_bucket_code(canister);
 
