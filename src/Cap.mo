@@ -32,10 +32,10 @@ import Option "mo:base/Option";
 import Prelude "mo:base/Prelude";
 
 module {
-    public class Cap(override_mainnet_router_id: ?Text) {
+    public class Cap(override_mainnet_router_id: ?Text, override_root_bucket_id: ?Text) {
         let router_id = Option.get(override_mainnet_router_id, Router.mainnet_id);
         
-        var rootBucket: ?Text = null;
+        var rootBucket: ?Text = override_root_bucket_id;
         let ic: IC.ICActor = actor("aaaaa-aa");
 
         public func getTransaction(id: Nat64) : async Result.Result<Root.Event, Types.GetTransactionError> {
@@ -67,7 +67,10 @@ module {
         public func insert(event: Root.IndefiniteEvent) : async Result.Result<Nat64, Types.InsertTransactionError> {
             let root = switch(rootBucket) {
                 case(?r) { r };
-                case(_) { Prelude.unreachable() };
+                case(_) {
+                    Debug.print("Trapping: Root bucket was undefined on call to `insert`.");
+                    Prelude.unreachable();
+                };
             };
             let rb: Root.Self = actor(root);
 
