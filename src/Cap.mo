@@ -155,17 +155,6 @@ module {
                     switch (canister) {
                         case (?c) {
                             try {
-                                // NOTE: This call is failing on mainnet, but works locally.
-                                // DETAILS: IC0502: Canister lj532-6iaaa-aaaah-qcc7a-cai trapped: unreachable
-                                // This method in the CAP rust code has these panic cases:
-                                // - A root bucket for this token contract already exists.
-                                //   (Note that token contract principal is extracted from caller.)
-                                // - There is more than one controller on the canister.
-                                // - The canister is not empty, i.e. has any wasm installed.
-                                // The rust method also has the following exception cases:
-                                // - Canister status cannot be retrieved.
-                                // - Could not serialize the install arguments.
-                                // - Installing the code fails for some other reason.
                                 await router.install_bucket_code(c);
                             } catch e {
                                 throw Error.reject("Error installing code: " # Error.message(e));

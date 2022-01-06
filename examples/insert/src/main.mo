@@ -26,7 +26,7 @@ actor InsertExample {
     // The number of cycles to use when initialising
     // the handshake process which creates a new canister
     // and install the bucket code into cap service
-    let creationCycles : Nat = 100_000_000_000;
+    let creationCycles : Nat = 1_000_000_000_000;
 
     public func id() : async Principal {
         return Principal.fromActor(InsertExample);
