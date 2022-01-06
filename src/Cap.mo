@@ -3,9 +3,9 @@
 /// Minimal working example:
 ///
 /// ```motoko
-/// import Cap "mo:cap-motoko-library/Cap";
+/// import Cap "mo:cap/Cap";
 ///
-/// let cap = CapMotokoLibrary.Cap(?local_replica_routerId);
+/// let cap = CapMotokoLibrary.Cap(?localReplicaRouterId);
 /// let tokenContractId = "rdmx6-jaaaa-aaaaa-aaadq-cai";
 ///
 /// public func init() : async () {
@@ -13,7 +13,7 @@
 ///     // but could be declared in the function signature
 ///     // and pass when executing the request
 ///     let handshake = await cap.handshake(
-///       local_replica_routerId,
+///       localReplicaRouterId,
 ///       tokenContractId,
 ///       creationCycles
 ///     );
