@@ -37,9 +37,8 @@ import Types "Types";
 module {
     public class Cap(
         overrideRouterId    : ?Text,
-        overrideRootBucketId: ?Text,
     ) {
-        var rootBucket: ?Text = overrideRootBucketId;
+        var rootBucket: ?Text = null;
 
         let routerId = Option.get(overrideRouterId, Router.mainnet_id);
         let ic: IC.ICActor = actor("aaaaa-aa");
