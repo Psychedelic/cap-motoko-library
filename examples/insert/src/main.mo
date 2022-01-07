@@ -56,7 +56,6 @@ shared actor class InsertExample (
         // and pass when executing the request
         try {
             let handshake = await cap.handshake(
-                routerId,
                 tokenContractId,
                 creationCycles
             );
