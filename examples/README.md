@@ -117,7 +117,7 @@ To complete, we execute the `insert` to push some data to our Root bucket for ou
 dfx canister --network ic call <Application Token Contract ID> insert "()"
 ```
 
-Here's how it looks:
+Here's how the output looks (e.g. if you request a new `insert`, then the ok number will increase, as that's the wrapped transaction id):
 
 ```sh
 (variant { ok = 0 : nat64 })
