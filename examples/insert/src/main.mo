@@ -26,6 +26,9 @@ actor InsertExample {
     // The number of cycles to use when initialising
     // the handshake process which creates a new canister
     // and install the bucket code into cap service
+    // Obs: The minimum would appear to be somewhere around 200B,
+    // but set to 1T based on rckprtr's experience with Cap in rust
+    // as community contributor @jorgenbuilder experienced
     let creationCycles : Nat = 1_000_000_000_000;
 
     public func id() : async Principal {
