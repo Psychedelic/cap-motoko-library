@@ -4,7 +4,7 @@ The examples serve to provide information on how to use the Motoko Library, main
 
 Use the documentation here to understand how to run the separate services which are required in your local development environment.
 
-Deploying to Mainnet, shouldn't be any different, although the version of [Cap](https://github/com/psychedelic/cap) might be diferent from the version you run locally, so keep track of releases. If interested in finding more about deploying to the Mainnet, [read here](#deploying-to-mainnet).
+Deploying to Mainnet, shouldn't be any different, although the version of [Cap](https://github/com/psychedelic/cap) might be diferent from the version you run locally, so keep track of releases. If interested in finding more about deploying the examples to the Mainnet, [read here](#-deploying-the-examples-to-mainnet).
 
 # 🤔 How to run the examples?
 
@@ -77,4 +77,50 @@ Here's how it looks:
 
 The `(variant { ok = 0 : nat64 })` is a wrapped response of the expected returned value, the transaction id as `nat64` (starts at zero), as we can verify by looking at the [Candid](https://github.com/Psychedelic/cap/blob/main/candid/root.did#L57) for Cap Root. It's wrapped by our example `insert` method.
 
-👋 That's it! You can now use the Cap Motoko Library in your local replica and the same knowledge can be applied to deploy to the mainnet!
+👋 That's it! You can now use the Cap Motoko Library in your local replica and the same knowledge can be applied to deploy to the [mainnet](#-deploying-the-examples-to-mainnet)!
+
+# 🚀 Deploying the examples to mainnet
+
+We start by deploying to the Mainnet by using the flag `--network ic`, and omit the constructor argument which is used locally to override the Mainnet Router ID. By setting `null`, we cause the constructor to use the Router ID Mainnet.
+
+```sh
+dfx deploy --network ic --argument "(null)"
+```
+
+The output should show:
+
+```sh
+Creating canister "cap-motoko-example"...
+Installing code for canister cap-motoko-example, with canister_id <Application Token Contract Id>
+Deployed canisters.
+```
+
+Copy the `<Application Token Contract Id>`, as it's needed for initialisation.
+
+The initialisation is the process that calls the Cap `handshake` endpoint:
+
+```sh
+dfx canister --network ic call <Application Token Contract Id> init "()"
+```
+
+It should take a bit, and once completed you'll find the output it similar to:
+
+```sh
+()
+```
+
+From then on we can simple use the remaining methods available, such as `insert`. The same principals we found in the local replica apply here, so we only need to call the initialisation once.
+
+To complete, we execute the `insert` to push some data to our Root bucket for our `<Application Token Contract ID>` example application.
+
+```sh
+dfx canister --network ic call <Application Token Contract ID> insert "()"
+```
+
+Here's how it looks:
+
+```sh
+(variant { ok = 0 : nat64 })
+```
+
+👋 Well done!
