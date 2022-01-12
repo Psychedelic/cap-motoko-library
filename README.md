@@ -6,6 +6,14 @@ Transaction history & asset provenance for NFT’s & Tokens on the Internet Comp
 
 > CAP is an open internet service providing transaction history & asset provenance for NFT’s & Tokens on the Internet Computer. It solves the huge IC problem that assets don’t have native transaction history, and does so in a scalable, trustless and seamless way so any NFT/Token can integrate with one line of code.
 
+## Guides and Documentation
+
+To start using the CAP Motoko Library to integrate CAP into your Motoko-based NFT/Token, visit our documentation or the examples folder in this repository.
+
+- [CAP Motoko Library Documentation](https://docs.cap.ooo/integrate-cap/motoko-sdk/)
+- [CAP Motoko Library Examples](https://github.com/Psychedelic/cap-motoko-library/tree/main/examples)
+
+
 ## 📒 Table of Contents 
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
