@@ -64,6 +64,7 @@ It should take a bit, and once completed you'll find the output it similar to:
 
 Where `()` is the returned value, if we did NOT get any errors during the process handling!
 
+💡 When following the `cap-motoko-example` code structure in your own project, there is no need to call `init` after canister upgrades as the Root History Canister ID is persisted in stable memory.
 ## 3. Test the History by Making a Call to Insert an Event
 
 From then on we can simple use the remaining methods available, such as `insert`. This means that we do the initialisation only once and NOT everytime we need to make a Cap call.
