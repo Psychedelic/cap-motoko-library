@@ -37,8 +37,9 @@ import Types "Types";
 module {
     public class Cap(
         overrideRouterId    : ?Text,
+        provideRootBucketId : ?Text,
     ) {
-        var rootBucket: ?Text = null;
+        var rootBucket: ?Text = provideRootBucketId;
 
         let routerId = Option.get(overrideRouterId, Router.mainnet_id);
         let ic: IC.ICActor = actor("aaaaa-aa");
@@ -119,14 +120,17 @@ module {
         };
 
         // Get or create a root bucket canister for the given token contract.
+        // Return the rootBucket so it can be stored in stable memory in the 
+        // calling canister to be persisted during upgrades
         public func handshake(
             tokenContractId : Text,
             creationCycles  : Nat,
-        ): async () {
+        ): async ?Text {
             switch(await _getRootBucket(tokenContractId)) {
                 case (?canister) {
                     // If we already have a root bucket, store the principal in memory.
                     rootBucket := ?canister;
+                    return rootBucket;
                 };
                 case null {
                     // We do not have a root bucket. Ask the router to make one.
@@ -170,6 +174,7 @@ module {
                         case (?c) {
                             // Store the new root bucket principal in memory.
                             rootBucket := ?c;
+                            return rootBucket;
                         };
                         case _ {
                             // Debug.print("Root bucket cannot be null after root bucket creation.");
