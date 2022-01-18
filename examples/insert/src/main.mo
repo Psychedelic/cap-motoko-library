@@ -26,10 +26,17 @@ shared actor class InsertExample (
     // see the releases https://github.com/Psychedelic/cap/tags
     let routerId = Option.get(overrideRouterCanister, Router.mainnet_id);
 
+    // Create a stable variable to persist the Root Canister ID during upgrades.
+    // This way the init() method doesn't need to be called after canister upgrades.
+    private stable var rootBucketId : ?Text = null;
+
     // If the local replica router is not set
     // then the mainnet id is used "lj532-6iaaa-aaaah-qcc7a-cai" 
     // and because the expected argument is an optional we pass as ?xxx
-    let cap = Cap.Cap(?routerId);
+    // We also pass in the rootBucketId. If the init() method has been called before,
+    // the rootBucketId variable contains the principal for this canisters root bucket,
+    // otherwise it's null.
+    let cap = Cap.Cap(?routerId, rootBucketId);
 
     // The number of cycles to use when initialising
     // the handshake process which creates a new canister
@@ -55,7 +62,7 @@ shared actor class InsertExample (
         // but could be declared in the function signature
         // and pass when executing the request
         try {
-            let handshake = await cap.handshake(
+            rootBucketId := await cap.handshake(
                 tokenContractId,
                 creationCycles
             );
