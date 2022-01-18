@@ -84,7 +84,7 @@ let Package =
 
 let
   additions =
-      [{ name = "base"
+      [{ name = "cap-motoko-library"
       , repo = "https://github.com/Psychedelic/cap-motoko-library"
       , version = "v1.0.0"
       , dependencies = [] : List Text
@@ -92,7 +92,13 @@ let
 
 in  upstream # additions
 ```
-
+Make sure you also add the library as a dependency to your `vessel.dhall` file like this:
+```sh
+{
+  dependencies = [ "base", "cap-motoko-library" ],
+  compiler = Some "0.6.11"
+}
+```
 We've assumed that you have followed `Vessel` initialisation e.g. the init and the `dfx.json`. 
 
 Here's a breakdown of a project initialised by the [dfx cli](https://smartcontracts.org/docs/developers-guide/cli-reference.html):
