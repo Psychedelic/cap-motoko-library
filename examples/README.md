@@ -191,11 +191,13 @@ Provided some scripts to run a few process, for your convinence.
 
 The tests are available along the example directory. For example, for the `/examples/insert` there's a `/examples/insert/tests` directory.
 
+Make sure that you have first deployed your Application, initialise a Token contract with Cap and inserted some data. Check the `cap-motoko-library` insert example first!
+
 To run the `upgrade` test example, jump into the directory and execute the command:
 
 ```sh
 ./canister-upgrade.sh <Router ID> <Application Token Contract Id>
 ```
 
-There are any assertions on the tests, the result responses should be checked manually. For example, if you'd like to test the `canister upgrade` for the example application, make sure you verify the initial state or response to keep track of any differences.
-
+There are some basic assertions on the tests, but the result responses should be checked manually too. The assertion is basic and simply checks if there are any differences between the before and after upgrade state for a particular root canister method e.g. get_transactions.
+For example, if you'd like to test the `canister upgrade` for the example application, make sure you verify the initial state or response to keep track of any differences.
