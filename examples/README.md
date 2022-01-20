@@ -196,3 +196,5 @@ To run the `upgrade` test example, jump into the directory and execute the comma
 ```sh
 ./canister-upgrade.sh <Router ID> <Application Token Contract Id>
 ```
+
+There are any assertions on the tests, the result responses should be checked manually. For example, if you'd like to test the `canister upgrade` for the example application, make sure you verify the initial state or response to keep track of any differences.
