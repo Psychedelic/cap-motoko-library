@@ -6,6 +6,11 @@ Use the documentation here to understand how to run the separate services which 
 
 Deploying to Mainnet, shouldn't be any different, although the version of [Cap](https://github/com/psychedelic/cap) might be diferent from the version you run locally, so keep track of releases. If interested in finding more about deploying the examples to the Mainnet, [read here](#-deploying-the-examples-to-mainnet).
 
+## 📒 Table of Contents 
+- [How to run the examples?](#-how-to-run-the-examples)
+- [How to use the test use-cases?](#-how-to-use-the-test-use-cases)
+
+
 # 🤔 How to run the examples?
 
 **TLDR;** Deploy the example to mainnet and use an actor to interact with it, either via [DFX CLI](https://sdk.dfinity.org/docs/developers-guide/cli-reference.html) or your [Agentjs](https://github.com/dfinity/agent-js).
@@ -179,3 +184,15 @@ Here's how the output looks like for two transactions in the history:
 ```
 
 👋 Well done! You've succesfully deployed a Canister to the mainnet, inserted some event data and retrieved the event transactions!
+
+# 💍 How to use the test use-cases?
+
+Provided some scripts to run a few process, for your convinence.
+
+The tests are available along the example directory. For example, for the `/examples/insert` there's a `/examples/insert/tests` directory.
+
+To run the `upgrade` test example, jump into the directory and execute the command:
+
+```sh
+./canister-upgrade.sh <Router ID> <Application Token Contract Id>
+```
