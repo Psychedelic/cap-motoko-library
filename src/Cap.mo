@@ -81,7 +81,26 @@ module {
                 );
             };
         };
+        
+        // Migrate an array of events to the root bucket.
+        public func migrate(
+            events: [Root.Event],
+        ) : async Result.Result<(), Types.InsertTransactionError> {
+            let root = switch(rootBucket) {
+                case(?r) { r };
+                case(_) {
+                    throw Error.reject("Cannot call `migrate` with no root bucket.");
+                };
+            };
+            let rb: Root.Self = actor(root);
 
+            try {
+                #ok(await rb.migrate(events));
+            } catch e {
+                throw Error.reject("Error migrating events: " # Error.message(e));
+            };
+        };
+        
         // Adds an event to the root bucket.
         public func insert(
             event: Root.IndefiniteEvent,
