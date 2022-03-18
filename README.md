@@ -87,7 +87,7 @@ let
       [{ name = "cap-motoko-library"
       , repo = "https://github.com/Psychedelic/cap-motoko-library"
       , version = "v1.0.0"
-      , dependencies = [] : List Text
+      , dependencies = ["base"] : List Text
       }] : List Package
 
 in  upstream # additions
